@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TextField(style: TextStyle(fontSize: 20.0, color: Colors.purple),
+              TextField(style: TextStyle(fontSize: 25.0, color: Colors.purple),
                 controller: _emailController,
 
         decoration: InputDecoration(
@@ -45,9 +45,10 @@ class LoginScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
           ),
 
-                hintText: 'email',
-                hintStyle: TextStyle(color: Colors.purpleAccent),
-                prefixIcon: Icon(Icons.mail, color: Colors.purpleAccent),
+                hintText: 'email', fillColor: Colors.white54,
+                filled: true,
+                hintStyle: TextStyle(color: Colors.purple),
+                prefixIcon: Icon(Icons.mail, color: Colors.purple),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     borderSide: BorderSide(
@@ -56,7 +57,7 @@ class LoginScreen extends StatelessWidget {
     ),
               ),
               ),
-                TextField(style: TextStyle(fontSize: 20.0, color: Colors.purple),
+                TextField(style: TextStyle(fontSize: 25.0, color: Colors.purple),
                   controller: _passwordController,
                   obscureText: true,
                   // textInputAction: TextInputAction.done,
@@ -72,9 +73,10 @@ class LoginScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20.0),
                       ),
 
-                    hintText: 'password',
-                      hintStyle: TextStyle(color: Colors.purpleAccent),
-                  prefixIcon: Icon(Icons.lock, color: Colors.purpleAccent),
+                    hintText: 'password', fillColor: Colors.white54,
+                      filled: true,
+                      hintStyle: TextStyle(color: Colors.purple),
+                  prefixIcon: Icon(Icons.lock, color: Colors.purple),
                     border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                       borderSide: BorderSide(
