@@ -5,16 +5,15 @@ import 'user.dart';
 import 'package:email_validator/email_validator.dart';
 
 class SignUpScreen extends StatelessWidget {
-
   final _emailController = TextEditingController();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordAgainController = TextEditingController();
 
   final _usersRepository = UsersRepository();
+
   // var email = "tony@starkindustries.com";
   // bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
-
   SignUpScreen({Key? key}) : super(key: key);
 
   @override
@@ -23,79 +22,89 @@ class SignUpScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Sign Up'),
       ),
-        body: Container(
-           decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/one-punch-man-saitama-manga-wallpaper-preview.jpg'),
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-
-          child: Form(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                'assets/images/one-punch-man-saitama-manga-wallpaper-preview.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Form(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: ListView(
+              //padding: const EdgeInsets.fromLTRB(45, 15, 45, 15),
               padding: const EdgeInsets.all(16),
               children: [
-              TextFormField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.account_box, color: Colors.purple),
-                labelText: 'Username', fillColor: Colors.white54,
-                filled: true,
-                labelStyle: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 25),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: const BorderSide(
-                        color: Colors.deepPurple, width: 2.0
-                  ),
-                  ),
-              ),
-                  textInputAction: TextInputAction.next,
-                validator: (value) {
+                TextFormField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_box, color: Colors.purple),
+                      labelText: 'Username',
+                      fillColor: Colors.white54,
+                      filled: true,
+                      labelStyle: TextStyle(
+                          color: Colors.purple,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: const BorderSide(
+                            color: Colors.deepPurple, width: 2.0),
+                      ),
+                    ),
+                    textInputAction: TextInputAction.next,
+                    validator: (value) {
                       if (value!.isEmpty) return 'Username';
-                      if (!value.contains('^(?=.{3,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])\$')) return 'Enter a valid Username';
+                      if (!value.contains(
+                          '^(?=.{3,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])\$')) {
+                        return 'Enter a valid Username';
                       }
-                        ),
+                    }),
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.mail, color: Colors.purple),
-                    labelText: 'E-mail', fillColor: Colors.white54,
+                    prefixIcon: const Icon(Icons.mail, color: Colors.purple),
+                    labelText: 'E-mail',
+                    fillColor: Colors.white54,
                     filled: true,
-                    labelStyle: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 25),
+                    labelStyle: TextStyle(
+                        color: Colors.purple,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide(
-                          color: Colors.deepPurple, width: 2.0
-                      ),
+                      borderSide:
+                          BorderSide(color: Colors.deepPurple, width: 2.0),
                     ),
-                    ),
-                    textInputAction: TextInputAction.next,
-                //   validator: (value) {
-                //         if (value!.isEmpty) return 'E-mail';
-                //         if (emailValid) return 'Enter a valid  E-mail';
-                //         }
-                    validator: (email) =>
-                email != null && !EmailValidator.validate(email)
-                ? 'Enter a valid email' //form is not valid
-                : null, // form is valid
+                  ),
+                  textInputAction: TextInputAction.next,
+                  //   validator: (value) {
+                  //         if (value!.isEmpty) return 'E-mail';
+                  //         if (emailValid) return 'Enter a valid  E-mail';
+                  //         }
+                  validator: (email) =>
+                      email != null && !EmailValidator.validate(email)
+                          ? 'Enter a valid email' //form is not valid
+                          : null, // form is valid
                 ),
-
                 TextFormField(
                     controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.lock, color: Colors.purple),
-                      labelText: 'Password', fillColor: Colors.white54,
+                      labelText: 'Password',
+                      fillColor: Colors.white54,
                       filled: true,
-                      labelStyle: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 25),
+                      labelStyle: TextStyle(
+                          color: Colors.purple,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(
-                            color: Colors.deepPurple
-                        ),
+                        borderSide: BorderSide(color: Colors.deepPurple),
                       ),
-                      ),
+                    ),
                     textInputAction: TextInputAction.next,
                     validator: (value) {
                       if (value!.isEmpty) return 'Password';
@@ -103,26 +112,27 @@ class SignUpScreen extends StatelessWidget {
                         return 'Enter min. 7 characters';
                       } else {
                         return null; // form is valid
-                        }
                       }
-                     ),
-              TextFormField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock, color: Colors.purple),
-                labelText: 'Conform password', fillColor: Colors.white54,
-                filled: true,
-                labelStyle: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 25),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                  borderSide: BorderSide(
-                      color: Colors.deepPurple
+                    }),
+                TextFormField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock, color: Colors.purple),
+                    labelText: 'Conform password',
+                    fillColor: Colors.white54,
+                    filled: true,
+                    labelStyle: TextStyle(
+                        color: Colors.purple,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(color: Colors.deepPurple),
+                    ),
                   ),
+                  textInputAction: TextInputAction.done,
                 ),
-                ),
-              textInputAction: TextInputAction.done,
-            ),
                 ElevatedButton(
                   onPressed: () async {
                     final email = _emailController.text;
@@ -143,12 +153,12 @@ class SignUpScreen extends StatelessWidget {
                   child: const Text('Sign Up'),
                 ),
               ],
-            )
-            ),
-        ),
+            )),
+      ),
     );
-        }
+  }
 }
+
 // extension EmailValidator on String {
 //   bool isValidEmail() {
 //     return RegExp(

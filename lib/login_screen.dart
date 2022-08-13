@@ -15,103 +15,155 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/88a5f6155d56f3aa13345dec31a00836.jpg'),
-          fit: BoxFit.contain,
-        ),
-      ),
-      child:Scaffold(
-        backgroundColor: Colors.transparent,
+    return Scaffold(
+      //resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: const Text('Login'),
         centerTitle: true,
       ),
-        body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextField(style: TextStyle(fontSize: 25.0, color: Colors.purple),
-                controller: _emailController,
-
-        decoration: InputDecoration(
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.purpleAccent, width: 2.0),
-            borderRadius: BorderRadius.circular(20.0),
+      body: Container(
+        // padding: EdgeInsets.only(
+        //   bottom: MediaQuery.of(context).viewInsets.bottom,
+        // ),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/cup_of_coffee.png'),
+            fit: BoxFit.cover,
           ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.purple, width: 2.0),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-
-                hintText: 'email', fillColor: Colors.white54,
-                filled: true,
-                hintStyle: TextStyle(color: Colors.purple),
-                prefixIcon: Icon(Icons.mail, color: Colors.purple),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(
-                        color: Colors.purple
+        ),
+        child:
+            // SingleChildScrollView(
+            //child: Column(
+            // children: [
+            ListView(padding: EdgeInsets.only(top: 10),
+                //mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+              Container(
+                margin: const EdgeInsets.fromLTRB(40, 5, 40, 5),
+                child: TextField(
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.purpleAccent, width: 2.0),
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
-    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.purple, width: 2.0),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    hintText: 'e-mail',
+                    fillColor: Colors.white54,
+                    filled: true,
+                    hintStyle: TextStyle(color: Colors.purple),
+                    prefixIcon: Icon(Icons.mail, color: Colors.purple),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(color: Colors.purple),
+                    ),
+                  ),
+                ),
               ),
-              ),
-                TextField(style: TextStyle(fontSize: 25.0, color: Colors.purple),
+              Container(
+                margin: const EdgeInsets.fromLTRB(40, 5, 40, 5),
+                child: TextField(
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold,
+                  ),
                   controller: _passwordController,
                   obscureText: true,
                   // textInputAction: TextInputAction.done,
                   // decoration: const InputDecoration(
 
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purpleAccent, width: 2.0),
-                        borderRadius: BorderRadius.circular(20.0),
-                           ),
-                        enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple, width: 2.0),
-                          borderRadius: BorderRadius.circular(20.0),
-                      ),
-
-                    hintText: 'password', fillColor: Colors.white54,
-                      filled: true,
-                      hintStyle: TextStyle(color: Colors.purple),
-                  prefixIcon: Icon(Icons.lock, color: Colors.purple),
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.purpleAccent, width: 2.0),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.purple, width: 2.0),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    hintText: 'password',
+                    fillColor: Colors.white54,
+                    filled: true,
+                    hintStyle: TextStyle(color: Colors.purple),
+                    prefixIcon: Icon(Icons.lock, color: Colors.purple),
                     border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                          color: Colors.purple
-                      ),),
-                        ),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide(color: Colors.purple),
+                    ),
+                  ),
                 ),
-                   ElevatedButton(
-                    onPressed: () async {
-                      final email = _emailController.text;
-                      final password = _passwordController.text;
-                      final user = User(email, password);
-                      if (await _usersRepository.contains(user)) {
-                        await _sessionManager.saveSession(user);
-                        Navigator.pushReplacementNamed(context, '/home', arguments: email);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            backgroundColor: Colors.red,
-                            content: Text('Wrong email or password'),
-                          ),
-                    );
-                  }
-                },
-                    child: const Text('Login'),
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/sign_up');
-                },
-                child: const Text('Firstly here? Sign up!', style: TextStyle(fontSize: 15.0,),
+              Container(
+                margin: const EdgeInsets.fromLTRB(160, 5, 160, 5),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final email = _emailController.text;
+                    final password = _passwordController.text;
+                    final user = User(email, password);
+                    if (await _usersRepository.contains(user)) {
+                      await _sessionManager.saveSession(user);
+                      Navigator.pushReplacementNamed(context, '/home',
+                          arguments: email);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text('Wrong email or password'),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
-              )],
-          ),
+              Container(
+                //child: FittedBox(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/sign_up');
+                  },
+                  child: FittedBox(
+                    child: Text(
+                      //'Firstly here?\n '
+                      'Sign up!', textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 45,
+                        foreground: Paint()
+                          ..style = PaintingStyle.stroke
+                          ..strokeWidth = 2
+                          ..color = Colors.purple[600]!,
+                        shadows: [
+                          Shadow(
+                              color: Colors.white,
+                              blurRadius: 3,
+                              offset: Offset(0, 0))
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ]),
       ),
-      );
+    );
   }
 }
